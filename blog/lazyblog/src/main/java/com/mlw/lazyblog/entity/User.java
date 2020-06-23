@@ -1,45 +1,69 @@
 package com.mlw.lazyblog.entity;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * @author oRuol
  * @Date 2020/6/23 15:58
  */
-public class User {
+@Slf4j
+public class User implements UserDetails {
     private int userId;
     private String password;
     private String userName;
-    private String authority;
+    private String userAuthority;
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
+    @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> list = new ArrayList<>();
+        Arrays.asList(userAuthority.split(",")).
+                forEach((String authority)->{
+                    list.add(new SimpleGrantedAuthority(authority));
+                });
+        log.info(this.password);
+        return list;
     }
 
-    public String getUserName() {
-        return userName;
+    public User() {
+        super();
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public String getUsername() {
+        return this.userName;
     }
 
-    public String getAuthority() {
-        return authority;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
@@ -48,7 +72,7 @@ public class User {
                 "userId=" + userId +
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
-                ", authority='" + authority + '\'' +
+                ", userAuthority='" + userAuthority + '\'' +
                 '}';
     }
 }
