@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.Resource;
+import java.util.Random;
 
 /**
  * @author oRuol
@@ -45,12 +46,13 @@ public class test {
      */
     @Test
     public void testRedisTemplate(){
-        TestUser user = new TestUser();
-        user.setUserId(1);
-        user.setUserName("xiaoming");
-        user.setPassword("123456");
-        user.setMail("957197536@qq.com");
-        user.setUserAuthority("root");
+//        TestUser user = new TestUser();
+//        user.setUserId(1);
+//        user.setUserName("xiaoming");
+//        user.setPassword("123456");
+//        user.setMail("957197536@qq.com");
+//        user.setUserAuthority("root");
+        String user = "176183";
         redisTemplate.opsForValue().set("name",user);
 
         Object name = redisTemplate.opsForValue().get("name");
@@ -66,5 +68,16 @@ public class test {
         simpleMailMessage.setSubject("lazyBlog Verification code");
         simpleMailMessage.setText("邮件测试服务");
         javaMailSender.send(simpleMailMessage);
+    }
+
+    @Test
+    public void GenerationVC(){
+        Random random = new Random();
+        String result = "";
+        for (int i = 0; i < 6; i++)
+        {
+            result += random.nextInt(10);
+        }
+        System.out.println(result);
     }
 }

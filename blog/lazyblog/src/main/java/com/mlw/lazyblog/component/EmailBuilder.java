@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  */
 
 @Component
-public class emailBuilder {
+public class EmailBuilder {
 
     @Resource
     private JavaMailSender javaMailSender;
