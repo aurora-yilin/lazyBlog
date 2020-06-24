@@ -34,7 +34,6 @@ public class User implements UserDetails {
                 forEach((String authority)->{
                     list.add(new SimpleGrantedAuthority(authority));
                 });
-        log.info(this.password);
         return list;
     }
 
@@ -65,16 +64,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", password='" + password + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userAuthority='" + userAuthority + '\'' +
-                '}';
     }
 
     public int getUserId() {
@@ -111,5 +100,16 @@ public class User implements UserDetails {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userAuthority='" + userAuthority + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
     }
 }

@@ -14,7 +14,6 @@ import javax.annotation.Resource;
  */
 @RestController
 public class HelloController {
-
     @Resource
     private UserService userService;
 
@@ -27,4 +26,5 @@ public class HelloController {
     public User selectUser(@PathVariable("userName")String userName){
         return userService.selectUserByUserName(userName);
     }
+
 }

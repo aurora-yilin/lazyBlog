@@ -24,7 +24,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         // 设置value的序列化规则和 key的序列化规则
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redisTemplate.afterPropertiesSet();
+//        redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
 }

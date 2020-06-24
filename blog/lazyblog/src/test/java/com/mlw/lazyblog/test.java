@@ -1,8 +1,13 @@
 package com.mlw.lazyblog;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.annotation.Resource;
 
 /**
  * @author oRuol
@@ -11,7 +16,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootTest
 public class test {
 
-    @Test
+    @Resource
+    private JavaMailSender javaMailSender;
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+    @org.junit.jupiter.api.Test
     public void testEncode(){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String hashPass = bCryptPasswordEncoder.encode("admin");
@@ -19,5 +30,41 @@ public class test {
         System.out.println(admin);
 
         System.out.println(admin);
+    }
+
+    /**
+     * Redis常见的五大数据类型
+     * String（字符串）、List（列表）、Set（集合）、Hash（散列）、ZSet（有序集合）
+     *
+     * 以下是spring操作Redis的工具方法：
+     *      (StringRedisTemplate)stringRedisTemplate.opsForValue();[String（字符串）]
+     *      (StringRedisTemplate)stringRedisTemplate.opsForHash();[Hash（散列）]
+     *      (StringRedisTemplate)stringRedisTemplate.opsForList();[Hash（列表）]
+     *      (StringRedisTemplate)stringRedisTemplate.opsForSet();[Hash（集合）]
+     *      (StringRedisTemplate)stringRedisTemplate.opsForZSet();[Hash（有序集合）]
+     */
+    @Test
+    public void testRedisTemplate(){
+        TestUser user = new TestUser();
+        user.setUserId(1);
+        user.setUserName("xiaoming");
+        user.setPassword("123456");
+        user.setMail("957197536@qq.com");
+        user.setUserAuthority("root");
+        redisTemplate.opsForValue().set("name",user);
+
+        Object name = redisTemplate.opsForValue().get("name");
+        System.out.println(name);
+
+    }
+
+    @Test
+    public void sendEmail(){
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("liyilinshui@foxmail.com");
+        simpleMailMessage.setTo("2095147827@qq.com");
+        simpleMailMessage.setSubject("lazyBlog Verification code");
+        simpleMailMessage.setText("邮件测试服务");
+        javaMailSender.send(simpleMailMessage);
     }
 }
