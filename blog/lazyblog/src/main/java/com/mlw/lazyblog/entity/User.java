@@ -20,6 +20,7 @@ public class User implements UserDetails {
     private String password;
     private String userName;
     private String userAuthority;
+    private String mail;
 
     @Override
     public String getPassword() {
@@ -74,5 +75,41 @@ public class User implements UserDetails {
                 ", userName='" + userName + '\'' +
                 ", userAuthority='" + userAuthority + '\'' +
                 '}';
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserAuthority() {
+        return userAuthority;
+    }
+
+    public void setUserAuthority(String userAuthority) {
+        this.userAuthority = userAuthority;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

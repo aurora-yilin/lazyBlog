@@ -7,6 +7,7 @@
         <result property="userName" column="user_name"></result>
         <result property="password" column="password"></result>
         <result property="userAuthority" column="authority"></result>
+        <result property="mail" column="mail"></result>
     </resultMap>
 
     <select id="selectUserByUserName" resultMap="userResultMap" parameterType="string">
