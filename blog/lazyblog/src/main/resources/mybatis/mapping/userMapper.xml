@@ -7,10 +7,15 @@
         <result property="userName" column="user_name"></result>
         <result property="password" column="password"></result>
         <result property="userAuthority" column="authority"></result>
-        <result property="mail" column="mail"></result>
+        <result property="email" column="email"></result>
     </resultMap>
 
     <select id="selectUserByUserName" resultMap="userResultMap" parameterType="string">
         select * from user where user_name=#{userName}
     </select>
+
+    <insert id="saveUser" parameterType="com.mlw.lazyblog.entity.User">
+        insert into user(user_name,password,authority,email)
+        values(#{user.userName},#{user.password},#{user.userAuthority},#{user.email})
+    </insert>
 </mapper>

@@ -1,6 +1,7 @@
 package com.mlw.lazyblog.entity;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,7 @@ public class User implements UserDetails {
     private String password;
     private String userName;
     private String userAuthority;
-    private String mail;
+    private String email;
 
     @Override
     public String getPassword() {
@@ -78,14 +79,6 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getUserAuthority() {
         return userAuthority;
     }
@@ -94,12 +87,20 @@ public class User implements UserDetails {
         this.userAuthority = userAuthority;
     }
 
-    public String getMail() {
-        return mail;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -109,7 +110,7 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userAuthority='" + userAuthority + '\'' +
-                ", mail='" + mail + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

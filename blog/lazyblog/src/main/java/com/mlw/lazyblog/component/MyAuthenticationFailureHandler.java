@@ -21,6 +21,6 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         responseOutput
-                .responJson(new ResultVO(ResultCode.FAILED.getCode(),"登录失败"), response);
+                .responJson(new ResultVO(ResultCode.FAILED), response);
     }
 }

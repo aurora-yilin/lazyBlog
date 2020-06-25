@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @Date 2020/6/23 15:42
  */
 @RestController
-public class HelloController {
+public class LoginController {
     @Resource
     private UserService userService;
 

@@ -22,6 +22,6 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         responseOutput
-                .responJson(new ResultVO(ResultCode.FAILED.getCode(),"未登录，无权访问"),response);
+                .responJson(new ResultVO(ResultCode.NLOGIN),response);
     }
 }

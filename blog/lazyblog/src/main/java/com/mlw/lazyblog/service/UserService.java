@@ -19,4 +19,7 @@ public class UserService {
     public User selectUserByUserName(String userName){
         return userMapper.selectUserByUserName(userName);
     }
+    public int saveUser(User user){
+        return userMapper.saveUser(user);
+    }
 }

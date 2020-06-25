@@ -22,6 +22,6 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         responseOutput
-                .responJson(new ResultVO(ResultCode.FAILED.getCode(),"权限不足"),response);
+                .responJson(new ResultVO(ResultCode.INSPER),response);
     }
 }

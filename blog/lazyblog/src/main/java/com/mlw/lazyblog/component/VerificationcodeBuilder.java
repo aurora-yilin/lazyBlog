@@ -1,5 +1,7 @@
 package com.mlw.lazyblog.component;
 
+import com.mlw.lazyblog.common.exception.RedisGetException;
+import com.mlw.lazyblog.common.exception.RedisSaveException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +29,22 @@ public class VerificationcodeBuilder {
         return result;
     }
 
-    public void saveVerificationCode(String email,String verificationCode){
-        redisTemplate.opsForValue()
-                .set(email,verificationCode,10, TimeUnit.MINUTES);
+    public void saveVerificationCode(String email,String verificationCode) throws RedisSaveException{
+        try {
+            redisTemplate.opsForValue()
+                    .set(email, verificationCode, 10, TimeUnit.MINUTES);
+        }catch (RuntimeException e){
+            throw new RedisSaveException("验证码存储失败");
+        }
+    }
+
+    public Object getVerificationCode(String email) throws RedisGetException{
+        Object code = redisTemplate.opsForValue().get(email);
+        if(code == null) {
+            throw new RedisGetException("验证码获取失败");
+        }
+        else{
+            return code;
+        }
     }
 }
