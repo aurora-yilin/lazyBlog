@@ -3,6 +3,7 @@ package com.mlw.lazyblog.service;
 import com.mlw.lazyblog.entity.User;
 import com.mlw.lazyblog.mypper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +20,11 @@ public class UserService {
     public User selectUserByUserName(String userName){
         return userMapper.selectUserByUserName(userName);
     }
-    public int saveUser(User user){
-        return userMapper.saveUser(user);
+    public int saveUser(User user) throws DataAccessException{
+        try {
+            return userMapper.saveUser(user);
+        }catch (DataAccessException dae){
+            throw dae;
+        }
     }
 }

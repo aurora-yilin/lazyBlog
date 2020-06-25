@@ -5,6 +5,9 @@ package com.mlw.lazyblog.common;
  * @Date 2020/6/23 19:08
  */
 public enum  ResultCode {
+
+    SQLE(413,"sql语句错误"),
+
     //邮件发送错误
     MAIL(401,""),
 

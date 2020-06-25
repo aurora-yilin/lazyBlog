@@ -47,4 +47,9 @@ public class VerificationcodeBuilder {
             return code;
         }
     }
+
+    public Boolean delVerificationCode(String email){
+        Boolean delete = redisTemplate.delete(email);
+        return delete;
+    }
 }

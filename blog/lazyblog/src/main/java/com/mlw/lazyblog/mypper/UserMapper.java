@@ -3,6 +3,7 @@ package com.mlw.lazyblog.mypper;
 import com.mlw.lazyblog.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.dao.DataAccessException;
 
 /**
  * @author oRuol
@@ -12,5 +13,5 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     public User selectUserByUserName(String userName);
 
-    public int saveUser(@Param("user") User user);
+    public int saveUser(@Param("user") User user)throws DataAccessException;
 }

@@ -80,4 +80,10 @@ public class test {
         }
         System.out.println(result);
     }
+
+    @Test
+    public void testDelCode(){
+        Boolean delete = redisTemplate.delete("2095147827@qq.com");
+        System.out.println(delete);
+    }
 }

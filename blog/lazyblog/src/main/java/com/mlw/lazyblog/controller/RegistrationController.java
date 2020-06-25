@@ -9,6 +9,7 @@ import com.mlw.lazyblog.component.VerificationcodeBuilder;
 import com.mlw.lazyblog.entity.User;
 import com.mlw.lazyblog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
 import org.springframework.mail.MailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.SQLNonTransientException;
 
 /**
  * @author oRuol
@@ -59,14 +63,17 @@ public class RegistrationController {
             String verificationCode = (String)verificationcodeBuilder.getVerificationCode(user.getEmail());
             if (code.equals(verificationCode)) {
                 userService.saveUser(user);
+                verificationcodeBuilder.delVerificationCode(user.getEmail());
                 return new ResultVO(ResultCode.SUCCESS);
             } else {
                 return new ResultVO(ResultCode.VERCODE);
             }
         }catch(RedisGetException rge){
             throw rge;
-        }
-        catch (RuntimeException re){
+        }catch (DataAccessException dae){
+            verificationcodeBuilder.delVerificationCode(user.getEmail());
+            throw dae;
+        } catch (RuntimeException re){
             throw re;
         }
     }
