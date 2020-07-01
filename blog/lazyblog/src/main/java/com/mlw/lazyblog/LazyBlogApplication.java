@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
  */
 @EnableAspectJAutoProxy
 @EnableWebSecurity
-@MapperScan("com.mlw.lazyblog.mypper")
+@MapperScan("com.mlw.lazyblog.mapper")
 @SpringBootApplication
 public class LazyBlogApplication {
     public static void main(String[] args) {

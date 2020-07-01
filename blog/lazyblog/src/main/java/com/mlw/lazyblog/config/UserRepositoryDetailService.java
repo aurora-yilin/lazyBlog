@@ -1,7 +1,7 @@
 package com.mlw.lazyblog.config;
 
 import com.mlw.lazyblog.entity.User;
-import com.mlw.lazyblog.mypper.UserMapper;
+import com.mlw.lazyblog.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
  * @author oRuol
  * @Date 2020/6/23 18:56
  */
+@Slf4j
 @Component
 public class UserRepositoryDetailService implements UserDetailsService {
 
@@ -22,6 +23,7 @@ public class UserRepositoryDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info(username+"----");
         User user = userMapper.selectUserByUserName(username);
         if(user != null){
             return user;

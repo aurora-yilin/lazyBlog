@@ -17,11 +17,11 @@ import java.util.List;
  */
 @Slf4j
 public class User implements UserDetails {
-    private int userId;
     private String password;
     private String userName;
     private String userAuthority;
     private String email;
+    private String headImage;
 
     @Override
     public String getPassword() {
@@ -67,13 +67,6 @@ public class User implements UserDetails {
         return true;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -103,14 +96,22 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
-                ", password='" + password + '\'' +
+                "password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userAuthority='" + userAuthority + '\'' +
                 ", email='" + email + '\'' +
+                ", headImage='" + headImage + '\'' +
                 '}';
     }
 }

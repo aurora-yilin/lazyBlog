@@ -1,4 +1,4 @@
-package com.mlw.lazyblog.mypper;
+package com.mlw.lazyblog.mapper;
 
 import com.mlw.lazyblog.entity.User;
 import org.apache.ibatis.annotations.Mapper;

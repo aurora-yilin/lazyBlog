@@ -1,4 +1,4 @@
-package com.mlw.lazyblog.component;
+package com.mlw.lazyblog.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mlw.lazyblog.common.ResultCode;

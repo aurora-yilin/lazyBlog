@@ -2,6 +2,7 @@ package com.mlw.lazyblog.component;
 
 import com.mlw.lazyblog.common.exception.RedisGetException;
 import com.mlw.lazyblog.common.exception.RedisSaveException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author oRuol
  * @Date 2020/6/24 20:10
  */
+@Slf4j
 @Component
 public class VerificationcodeBuilder {
 
@@ -26,6 +28,7 @@ public class VerificationcodeBuilder {
         {
             result += random.nextInt(10);
         }
+        log.info("verification code:" + result);
         return result;
     }
 

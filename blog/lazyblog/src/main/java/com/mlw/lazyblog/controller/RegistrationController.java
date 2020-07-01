@@ -43,6 +43,7 @@ public class RegistrationController {
 
     @PostMapping("/sendemail")
     public ResultVO sendEmail(@RequestParam("email") String email){
+        log.info(email+"-----------");
         String vCode = verificationcodeBuilder.GenerationVerificationCode();
         try {
             verificationcodeBuilder.saveVerificationCode(email, vCode);
@@ -52,6 +53,7 @@ public class RegistrationController {
         }catch (RedisSaveException rse){
             throw rse;
         }
+        log.info("发送邮件地址:"+email);
         return new ResultVO(ResultCode.SUCCESS);
     }
 
@@ -64,16 +66,21 @@ public class RegistrationController {
             if (code.equals(verificationCode)) {
                 userService.saveUser(user);
                 verificationcodeBuilder.delVerificationCode(user.getEmail());
+                log.info(user.getUserName()+"regist success----------");
                 return new ResultVO(ResultCode.SUCCESS);
             } else {
+                log.info("verification code is different-----------------");
                 return new ResultVO(ResultCode.VERCODE);
             }
         }catch(RedisGetException rge){
+            log.error("redis RedisGetException----------");
             throw rge;
         }catch (DataAccessException dae){
+            log.error("DataAccessException--------------");
             verificationcodeBuilder.delVerificationCode(user.getEmail());
             throw dae;
         } catch (RuntimeException re){
+            log.error("RuntimeException---------------");
             throw re;
         }
     }

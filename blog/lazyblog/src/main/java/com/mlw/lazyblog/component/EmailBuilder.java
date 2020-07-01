@@ -1,5 +1,6 @@
 package com.mlw.lazyblog.component;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
  * @author oRuol
  * @Date 2020/6/24 19:46
  */
-
+@Slf4j
 @Component
 public class EmailBuilder {
 
@@ -25,5 +26,6 @@ public class EmailBuilder {
         simpleMailMessage.setSubject("lazyBlog Verification code");
         simpleMailMessage.setText(content);
         javaMailSender.send(simpleMailMessage);
+        log.info("send Email---------------"+receive);
     }
 }

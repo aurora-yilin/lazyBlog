@@ -2,6 +2,8 @@ package com.mlw.lazyblog.component;
 
 import com.mlw.lazyblog.common.ResultCode;
 import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.responseOutput;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -17,10 +19,12 @@ import java.io.IOException;
  *
  * 处理匿名用户访问无权限资源时的异常
  */
+@Slf4j
 @Component
 public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+        log.info("未认证，无权访问------------------");
         responseOutput
                 .responJson(new ResultVO(ResultCode.NLOGIN),response);
     }

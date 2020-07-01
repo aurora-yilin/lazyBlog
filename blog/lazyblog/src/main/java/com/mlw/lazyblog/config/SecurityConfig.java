@@ -15,6 +15,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.logging.Logger;
 
@@ -67,7 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(logoutSuccessHandler)
                 .invalidateHttpSession(true)//invalidate-session 默认为true,用户在退出后Http session失效
                 .deleteCookies("JSESSIONID")
-                .and().csrf().disable();//关闭csrf防护
+                .and().csrf().disable()//关闭csrf防护
+                .cors().configurationSource(corsConfigurationSource());//配置同源策略
     }
 
     @Override
@@ -84,5 +88,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    private CorsConfigurationSource corsConfigurationSource(){
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("*");	//同源配置，*表示任何请求都视为同源，若需指定ip和端口可以改为如“localhost：8080”，多个以“，”分隔；
+        corsConfiguration.addAllowedHeader("*");//header，允许哪些header，本案中使用的是token，此处可将*替换为token；
+        corsConfiguration.addAllowedMethod("*");	//允许的请求方法，PSOT、GET等
+        ((UrlBasedCorsConfigurationSource) urlBasedCorsConfigurationSource).registerCorsConfiguration("/**",corsConfiguration); //配置允许跨域访问的url
+        return urlBasedCorsConfigurationSource;
     }
 }

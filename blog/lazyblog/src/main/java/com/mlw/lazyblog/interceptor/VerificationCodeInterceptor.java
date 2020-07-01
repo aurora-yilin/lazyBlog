@@ -3,7 +3,7 @@ package com.mlw.lazyblog.interceptor;
 import com.mlw.lazyblog.common.ResultCode;
 import com.mlw.lazyblog.common.ResultVO;
 import com.mlw.lazyblog.component.VerificationcodeBuilder;
-import com.mlw.lazyblog.component.responseOutput;
+import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

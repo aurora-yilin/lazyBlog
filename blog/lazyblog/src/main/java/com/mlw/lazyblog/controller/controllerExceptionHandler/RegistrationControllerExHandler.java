@@ -41,4 +41,10 @@ public class RegistrationControllerExHandler {
     public ResultVO dataAccessExceptionHandle(DataAccessException e){
         return new ResultVO(ResultCode.SQLE.getCode(), e.getMessage());
     }
+
+    @ResponseBody
+    @ExceptionHandler(RuntimeException.class)
+    public ResultVO runtimeExceptionHandle(RuntimeException e){
+        return new ResultVO(ResultCode.ERROR.getCode(),e.getMessage());
+    }
 }

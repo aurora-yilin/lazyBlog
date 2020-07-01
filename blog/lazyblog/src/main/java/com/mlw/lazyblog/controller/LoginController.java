@@ -2,9 +2,8 @@ package com.mlw.lazyblog.controller;
 
 import com.mlw.lazyblog.entity.User;
 import com.mlw.lazyblog.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -12,14 +11,16 @@ import javax.annotation.Resource;
  * @author oRuol
  * @Date 2020/6/23 15:42
  */
+@Slf4j
 @RestController
 public class LoginController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello,lazyBlog";
+    @PostMapping("/hello")
+    public String hello(@RequestParam("id")String id){
+        log.info("id-----------"+id);
+        return id;
     }
 
     @GetMapping("/user/{userName}")

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mlw.lazyblog.mapper.ArticleMapper">
+
+    <resultMap id="ArticleResultMap" type="com.mlw.lazyblog.vo.ArticleVo">
+        <id property="articleId" column="article_id"></id>
+        <result property="articleLabelId" column="article_label_id"></result>
+        <result property="articleCategoryId" column="article_category_id"></result>
+        <result property="articleContent" column="article_content"></result>
+        <result property="articleTitle" column="article_title"></result>
+        <result property="articleTime" column="article_time"></result>
+        <result property="articleSynopsis" column="article_synopsis"></result>
+        <result property="articleImage" column="article_image"></result>
+        <result property="numLikes" column="num_likes"></result>
+        <result property="numViews" column="num_views"></result>
+    </resultMap>
+
+<!--    <select id="selectUserByUserName" resultMap="userResultMap" parameterType="string">-->
+<!--        select * from user where user_name=#{userName}-->
+<!--    </select>-->
+
+    <insert id="saveArticle" parameterType="com.mlw.lazyblog.entity.ArticleEntity">
+        insert into article(articleLabelId,articleCategoryId,articleContent,
+        articleTitle,articleSynopsis,articleImage)
+        values(#{articleEntity.articleLabelId},#{articleEntity.articleCategoryId},
+        #{articleEntity.articleContent},#{articleEntity.articleTitle},
+        #{articleEntity.articleSynopsis},#{articleEntity.articleImage})
+    </insert>
+</mapper>
