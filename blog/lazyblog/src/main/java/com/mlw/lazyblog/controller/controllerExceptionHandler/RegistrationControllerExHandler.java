@@ -1,7 +1,7 @@
 package com.mlw.lazyblog.controller.controllerExceptionHandler;
 
 import com.mlw.lazyblog.common.enums.RegistExceptionEnum;
-import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.enums.CommonEnum;
 import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.exception.RedisGetException;
 import com.mlw.lazyblog.common.exception.RedisSaveException;
@@ -40,12 +40,12 @@ public class RegistrationControllerExHandler {
     @ResponseBody
     @ExceptionHandler(DataAccessException.class)
     public ResultVO dataAccessExceptionHandle(DataAccessException e){
-        return new ResultVO(ResultCodeEnum.SQLE.getCode(), e.getMessage());
+        return new ResultVO(CommonEnum.SQLE.getCode(), e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(RuntimeException.class)
     public ResultVO runtimeExceptionHandle(RuntimeException e){
-        return new ResultVO(ResultCodeEnum.ERROR.getCode(),e.getMessage());
+        return new ResultVO(CommonEnum.ERROR.getCode(),e.getMessage());
     }
 }

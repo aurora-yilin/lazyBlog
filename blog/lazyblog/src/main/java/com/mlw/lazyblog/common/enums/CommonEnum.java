@@ -4,7 +4,7 @@ package com.mlw.lazyblog.common.enums;
  * @author oRuol
  * @Date 2020/6/23 19:08
  */
-public enum ResultCodeEnum {
+public enum CommonEnum {
 
     SQLE(413,"sql语句错误"),
 
@@ -17,7 +17,7 @@ public enum ResultCodeEnum {
     private int code;
     private String msg;
 
-    ResultCodeEnum(int code, String msg){
+    CommonEnum(int code, String msg){
         this.code = code;
         this.msg = msg;
     }

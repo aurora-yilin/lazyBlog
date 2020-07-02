@@ -1,7 +1,7 @@
 package com.mlw.lazyblog.controller;
 
 import com.mlw.lazyblog.common.enums.RegistExceptionEnum;
-import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.enums.CommonEnum;
 import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.exception.RedisGetException;
 import com.mlw.lazyblog.common.exception.RedisSaveException;
@@ -52,7 +52,7 @@ public class RegistrationController {
             throw rse;
         }
         log.info("发送邮件地址:"+email);
-        return new ResultVO(ResultCodeEnum.SUCCESS);
+        return new ResultVO(CommonEnum.SUCCESS);
     }
 
     @PostMapping("/regist")
@@ -65,7 +65,7 @@ public class RegistrationController {
                 userService.saveUser(user);
                 verificationcodeBuilder.delVerificationCode(user.getEmail());
                 log.info(user.getUserName()+"regist success----------");
-                return new ResultVO(ResultCodeEnum.SUCCESS);
+                return new ResultVO(CommonEnum.SUCCESS);
             } else {
                 log.info("verification code is different-----------------");
                 return new ResultVO(RegistExceptionEnum.VERCODE);

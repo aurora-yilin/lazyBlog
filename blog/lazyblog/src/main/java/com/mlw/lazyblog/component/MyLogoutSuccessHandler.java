@@ -1,6 +1,6 @@
 package com.mlw.lazyblog.component;
 
-import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.enums.CommonEnum;
 import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         log.info("登出成功----------------"+authentication.getName());
-        responseOutput.responJson(new ResultVO(ResultCodeEnum.SUCCESS.getCode(),"登出成功"), response);
+        responseOutput.responJson(new ResultVO(CommonEnum.SUCCESS.getCode(),"登出成功"), response);
     }
 
 }

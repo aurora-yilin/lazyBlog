@@ -1,7 +1,6 @@
 package com.mlw.lazyblog.component;
 
 import com.mlw.lazyblog.common.enums.LoginExceptionEnum;
-import com.mlw.lazyblog.common.enums.ResultCodeEnum;
 import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;

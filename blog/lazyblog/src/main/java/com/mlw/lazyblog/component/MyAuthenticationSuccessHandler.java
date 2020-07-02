@@ -1,6 +1,6 @@
 package com.mlw.lazyblog.component;
 
-import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.enums.CommonEnum;
 import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
 import com.mlw.lazyblog.common.entity.User;
@@ -34,7 +34,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         userVo.setEmail(principal.getEmail());
         userVo.setHeadImage(principal.getHeadImage());
         userVo.setUserAuthority((ArrayList) principal.getAuthorities());
-        responseOutput.responJson(new ResultVO<UserVo>(ResultCodeEnum.SUCCESS.getCode(),"登录成功",userVo), response);
+        responseOutput.responJson(new ResultVO<UserVo>(CommonEnum.SUCCESS.getCode(),"登录成功",userVo), response);
     }
 
 }

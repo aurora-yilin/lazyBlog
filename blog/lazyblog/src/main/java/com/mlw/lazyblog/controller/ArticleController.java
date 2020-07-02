@@ -1,7 +1,7 @@
 package com.mlw.lazyblog.controller;
 
 import com.mlw.lazyblog.common.enums.FileExceptionEnum;
-import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.enums.CommonEnum;
 import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.component.FileProperties;
 import com.mlw.lazyblog.common.entity.ArticleEntity;
@@ -39,10 +39,10 @@ public class ArticleController {
     public ResultVO saveArticleInfo(ArticleEntity articleEntity){
         try {
             if(articleService.saveArticle(articleEntity) == 1){
-                return new ResultVO(ResultCodeEnum.SUCCESS);
+                return new ResultVO(CommonEnum.SUCCESS);
             }
             else{
-                return new ResultVO(ResultCodeEnum.ERROR);
+                return new ResultVO(CommonEnum.ERROR);
             }
         }catch (DataAccessException dae){
             throw dae;
@@ -83,7 +83,7 @@ public class ArticleController {
             }
 
             FileInfo fileInfo = new FileInfo(randomFilename, fileproperties.getFilePattern());
-            return new ResultVO<FileInfo>(ResultCodeEnum.SUCCESS,fileInfo);
+            return new ResultVO<FileInfo>(CommonEnum.SUCCESS,fileInfo);
         }
     }
 }
