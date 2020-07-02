@@ -1,6 +1,6 @@
 package com.mlw.lazyblog.controller;
 
-import com.mlw.lazyblog.entity.User;
+import com.mlw.lazyblog.common.entity.User;
 import com.mlw.lazyblog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

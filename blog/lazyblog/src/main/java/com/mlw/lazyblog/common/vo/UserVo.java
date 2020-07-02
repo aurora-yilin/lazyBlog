@@ -1,4 +1,4 @@
-package com.mlw.lazyblog.vo;
+package com.mlw.lazyblog.common.vo;
 
 import java.util.ArrayList;
 import java.util.Collection;

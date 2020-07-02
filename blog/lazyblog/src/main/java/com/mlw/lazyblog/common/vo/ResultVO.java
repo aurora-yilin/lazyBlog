@@ -1,6 +1,7 @@
-package com.mlw.lazyblog.common;
+package com.mlw.lazyblog.common.vo;
 
-import javax.xml.transform.Result;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+
 import java.io.Serializable;
 
 /**
@@ -25,16 +26,16 @@ public class ResultVO<T> implements Serializable {
     private T data;
 
     public ResultVO(T data){
-        this(ResultCode.SUCCESS,data);
+        this(ResultCodeEnum.SUCCESS,data);
     }
 
-    public ResultVO(ResultCode resultCode, T data){
+    public ResultVO(ResultCodeEnum resultCode, T data){
         this.code = resultCode.getCode();
         this.msg = resultCode.getMsg();
         this.data = data;
     }
 
-    public ResultVO(ResultCode resultCode){
+    public ResultVO(ResultCodeEnum resultCode){
         this(resultCode,null);
     }
 

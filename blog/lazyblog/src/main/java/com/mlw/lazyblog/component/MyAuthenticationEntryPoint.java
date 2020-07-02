@@ -1,7 +1,8 @@
 package com.mlw.lazyblog.component;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.LoginExceptionEnum;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -26,6 +27,6 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         log.info("未认证，无权访问------------------");
         responseOutput
-                .responJson(new ResultVO(ResultCode.NLOGIN),response);
+                .responJson(new ResultVO(LoginExceptionEnum.NLOGIN),response);
     }
 }

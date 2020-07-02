@@ -1,12 +1,13 @@
 package com.mlw.lazyblog.controller;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.RegistExceptionEnum;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.exception.RedisGetException;
 import com.mlw.lazyblog.common.exception.RedisSaveException;
 import com.mlw.lazyblog.component.EmailBuilder;
 import com.mlw.lazyblog.component.VerificationcodeBuilder;
-import com.mlw.lazyblog.entity.User;
+import com.mlw.lazyblog.common.entity.User;
 import com.mlw.lazyblog.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
@@ -17,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.SQLNonTransientException;
 
 /**
  * @author oRuol
@@ -54,7 +52,7 @@ public class RegistrationController {
             throw rse;
         }
         log.info("发送邮件地址:"+email);
-        return new ResultVO(ResultCode.SUCCESS);
+        return new ResultVO(ResultCodeEnum.SUCCESS);
     }
 
     @PostMapping("/regist")
@@ -67,10 +65,10 @@ public class RegistrationController {
                 userService.saveUser(user);
                 verificationcodeBuilder.delVerificationCode(user.getEmail());
                 log.info(user.getUserName()+"regist success----------");
-                return new ResultVO(ResultCode.SUCCESS);
+                return new ResultVO(ResultCodeEnum.SUCCESS);
             } else {
                 log.info("verification code is different-----------------");
-                return new ResultVO(ResultCode.VERCODE);
+                return new ResultVO(RegistExceptionEnum.VERCODE);
             }
         }catch(RedisGetException rge){
             log.error("redis RedisGetException----------");

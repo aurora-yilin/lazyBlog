@@ -1,7 +1,7 @@
 package com.mlw.lazyblog.interceptor;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.component.VerificationcodeBuilder;
 import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class VerificationCodeInterceptor implements HandlerInterceptor {
             e.printStackTrace();
         }finally {
             responseOutput
-                    .responJson(new ResultVO(ResultCode.VALIDATE_FAILED.getCode(), "验证码错误"), response);
+                    .responJson(new ResultVO(ResultCodeEnum.VALIDATE_FAILED.getCode(), "验证码错误"), response);
             return false;
         }
     }

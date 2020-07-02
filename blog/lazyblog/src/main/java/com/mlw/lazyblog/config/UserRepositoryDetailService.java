@@ -1,6 +1,6 @@
 package com.mlw.lazyblog.config;
 
-import com.mlw.lazyblog.entity.User;
+import com.mlw.lazyblog.common.entity.User;
 import com.mlw.lazyblog.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;

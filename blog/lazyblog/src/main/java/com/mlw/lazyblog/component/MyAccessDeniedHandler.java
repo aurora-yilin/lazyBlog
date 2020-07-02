@@ -1,7 +1,8 @@
 package com.mlw.lazyblog.component;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.LoginExceptionEnum;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
@@ -26,6 +27,6 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         log.info("已认证但是无权访问---------------");
         responseOutput
-                .responJson(new ResultVO(ResultCode.INSPER),response);
+                .responJson(new ResultVO(LoginExceptionEnum.INSPER),response);
     }
 }

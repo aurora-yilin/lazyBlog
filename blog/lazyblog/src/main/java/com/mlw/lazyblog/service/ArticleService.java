@@ -1,8 +1,7 @@
 package com.mlw.lazyblog.service;
 
-import com.mlw.lazyblog.entity.ArticleEntity;
+import com.mlw.lazyblog.common.entity.ArticleEntity;
 import com.mlw.lazyblog.mapper.ArticleMapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 

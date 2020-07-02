@@ -1,11 +1,12 @@
 package com.mlw.lazyblog.controller;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.FileExceptionEnum;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.component.FileProperties;
-import com.mlw.lazyblog.entity.ArticleEntity;
+import com.mlw.lazyblog.common.entity.ArticleEntity;
 import com.mlw.lazyblog.service.ArticleService;
-import com.mlw.lazyblog.vo.FileInfo;
+import com.mlw.lazyblog.common.vo.FileInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,10 +39,10 @@ public class ArticleController {
     public ResultVO saveArticleInfo(ArticleEntity articleEntity){
         try {
             if(articleService.saveArticle(articleEntity) == 1){
-                return new ResultVO(ResultCode.SUCCESS);
+                return new ResultVO(ResultCodeEnum.SUCCESS);
             }
             else{
-                return new ResultVO(ResultCode.ERROR);
+                return new ResultVO(ResultCodeEnum.ERROR);
             }
         }catch (DataAccessException dae){
             throw dae;
@@ -53,7 +54,7 @@ public class ArticleController {
     @PostMapping("/saveImage")
     public ResultVO saveimage(@RequestParam("image")MultipartFile multipartFile){
         if (multipartFile.isEmpty()) {
-            return new ResultVO(ResultCode.NOFILE);
+            return new ResultVO(FileExceptionEnum.NOFILE);
         }else{
             String fileName = multipartFile.getOriginalFilename();
             String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -78,11 +79,11 @@ public class ArticleController {
                 multipartFile.transferTo(image);
             }catch (IOException e) {
                 e.printStackTrace();
-                return new ResultVO(ResultCode.FAILTOFILE);
+                return new ResultVO(FileExceptionEnum.FAILTOFILE);
             }
 
             FileInfo fileInfo = new FileInfo(randomFilename, fileproperties.getFilePattern());
-            return new ResultVO<FileInfo>(ResultCode.SUCCESS,fileInfo);
+            return new ResultVO<FileInfo>(ResultCodeEnum.SUCCESS,fileInfo);
         }
     }
 }

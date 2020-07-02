@@ -1,10 +1,10 @@
 package com.mlw.lazyblog.component;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
-import com.mlw.lazyblog.entity.User;
-import com.mlw.lazyblog.vo.UserVo;
+import com.mlw.lazyblog.common.entity.User;
+import com.mlw.lazyblog.common.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -34,7 +34,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         userVo.setEmail(principal.getEmail());
         userVo.setHeadImage(principal.getHeadImage());
         userVo.setUserAuthority((ArrayList) principal.getAuthorities());
-        responseOutput.responJson(new ResultVO<UserVo>(ResultCode.SUCCESS.getCode(),"登录成功",userVo), response);
+        responseOutput.responJson(new ResultVO<UserVo>(ResultCodeEnum.SUCCESS.getCode(),"登录成功",userVo), response);
     }
 
 }

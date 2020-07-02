@@ -1,6 +1,6 @@
 package com.mlw.lazyblog.mapper;
 
-import com.mlw.lazyblog.entity.ArticleEntity;
+import com.mlw.lazyblog.common.entity.ArticleEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

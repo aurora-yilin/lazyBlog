@@ -1,6 +1,6 @@
 package com.mlw.lazyblog.mapper;
 
-import com.mlw.lazyblog.entity.User;
+import com.mlw.lazyblog.common.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;

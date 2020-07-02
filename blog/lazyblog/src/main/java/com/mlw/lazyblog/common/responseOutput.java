@@ -1,9 +1,7 @@
 package com.mlw.lazyblog.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
-import jdk.dynalink.beans.StaticClass;
+import com.mlw.lazyblog.common.vo.ResultVO;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

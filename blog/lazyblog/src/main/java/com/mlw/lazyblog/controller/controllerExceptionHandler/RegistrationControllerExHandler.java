@@ -1,7 +1,8 @@
 package com.mlw.lazyblog.controller.controllerExceptionHandler;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.RegistExceptionEnum;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.exception.RedisGetException;
 import com.mlw.lazyblog.common.exception.RedisSaveException;
 import org.springframework.dao.DataAccessException;
@@ -21,30 +22,30 @@ public class RegistrationControllerExHandler {
     @ResponseBody
     @ExceptionHandler(MailException.class)
     public ResultVO mailExceptionHandle(MailException e){
-        return new ResultVO(ResultCode.MAIL.getCode(), e.getMessage());
+        return new ResultVO(RegistExceptionEnum.MAIL.getCode(), e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(RedisGetException.class)
     public ResultVO redisGetExceptionHandle(RedisGetException e){
-        return new ResultVO(ResultCode.REDISGET.getCode(),e.getMessage());
+        return new ResultVO(RegistExceptionEnum.REDISGET.getCode(),e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(RedisSaveException.class)
     public ResultVO redisSaveExceptionHandle(RedisSaveException e){
-        return new ResultVO(ResultCode.REDISSAVE.getCode(),e.getMessage());
+        return new ResultVO(RegistExceptionEnum.REDISSAVE.getCode(),e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(DataAccessException.class)
     public ResultVO dataAccessExceptionHandle(DataAccessException e){
-        return new ResultVO(ResultCode.SQLE.getCode(), e.getMessage());
+        return new ResultVO(ResultCodeEnum.SQLE.getCode(), e.getMessage());
     }
 
     @ResponseBody
     @ExceptionHandler(RuntimeException.class)
     public ResultVO runtimeExceptionHandle(RuntimeException e){
-        return new ResultVO(ResultCode.ERROR.getCode(),e.getMessage());
+        return new ResultVO(ResultCodeEnum.ERROR.getCode(),e.getMessage());
     }
 }

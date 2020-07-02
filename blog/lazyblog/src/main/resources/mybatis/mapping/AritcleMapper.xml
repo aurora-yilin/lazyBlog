@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mlw.lazyblog.mapper.ArticleMapper">
 
-    <resultMap id="ArticleResultMap" type="com.mlw.lazyblog.vo.ArticleVo">
+    <resultMap id="ArticleResultMap" type="com.mlw.lazyblog.common.vo.ArticleVo">
         <id property="articleId" column="article_id"></id>
         <result property="articleLabelId" column="article_label_id"></result>
         <result property="articleCategoryId" column="article_category_id"></result>
@@ -19,7 +19,7 @@
 <!--        select * from user where user_name=#{userName}-->
 <!--    </select>-->
 
-    <insert id="saveArticle" parameterType="com.mlw.lazyblog.entity.ArticleEntity">
+    <insert id="saveArticle" parameterType="com.mlw.lazyblog.common.entity.ArticleEntity">
         insert into article(articleLabelId,articleCategoryId,articleContent,
         articleTitle,articleSynopsis,articleImage)
         values(#{articleEntity.articleLabelId},#{articleEntity.articleCategoryId},

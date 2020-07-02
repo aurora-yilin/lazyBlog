@@ -1,16 +1,28 @@
-package com.mlw.lazyblog.entity;
+package com.mlw.lazyblog.common.vo;
 
 /**
  * @author oRuol
- * @Date 2020/7/1 16:50
+ * @Date 2020/7/1 18:50
  */
-public class ArticleEntity {
+public class ArticleVo {
+    private int articleId;
     private int articleLabelId;
     private int articleCategoryId;
     private String articleContent;
     private String articleTitle;
+    private String articleTime;
     private String articleSynopsis;
     private String articleImage;
+    private int numLikes;
+    private int numViews;
+
+    public int getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
+    }
 
     public int getArticleLabelId() {
         return articleLabelId;
@@ -44,6 +56,14 @@ public class ArticleEntity {
         this.articleTitle = articleTitle;
     }
 
+    public String getArticleTime() {
+        return articleTime;
+    }
+
+    public void setArticleTime(String articleTime) {
+        this.articleTime = articleTime;
+    }
+
     public String getArticleSynopsis() {
         return articleSynopsis;
     }
@@ -58,5 +78,21 @@ public class ArticleEntity {
 
     public void setArticleImage(String articleImage) {
         this.articleImage = articleImage;
+    }
+
+    public int getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(int numLikes) {
+        this.numLikes = numLikes;
+    }
+
+    public int getNumViews() {
+        return numViews;
+    }
+
+    public void setNumViews(int numViews) {
+        this.numViews = numViews;
     }
 }

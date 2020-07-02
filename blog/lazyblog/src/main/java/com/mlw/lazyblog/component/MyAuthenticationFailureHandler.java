@@ -1,7 +1,8 @@
 package com.mlw.lazyblog.component;
 
-import com.mlw.lazyblog.common.ResultCode;
-import com.mlw.lazyblog.common.ResultVO;
+import com.mlw.lazyblog.common.enums.LoginExceptionEnum;
+import com.mlw.lazyblog.common.enums.ResultCodeEnum;
+import com.mlw.lazyblog.common.vo.ResultVO;
 import com.mlw.lazyblog.common.responseOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -25,6 +26,6 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         log.info("认证失败---------------");
         responseOutput
-                .responJson(new ResultVO(ResultCode.FAILED), response);
+                .responJson(new ResultVO(LoginExceptionEnum.FAILED), response);
     }
 }
