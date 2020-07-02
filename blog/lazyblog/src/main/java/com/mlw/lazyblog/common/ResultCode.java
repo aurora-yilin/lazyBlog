@@ -5,6 +5,9 @@ package com.mlw.lazyblog.common;
  * @Date 2020/6/23 19:08
  */
 public enum  ResultCode {
+    NOFILE(415,"没有检测到上传文件"),
+
+    FAILTOFILE(417,"上传文件出错"),
 
     SQLE(413,"sql语句错误"),
 
